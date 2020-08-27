@@ -1,0 +1,31 @@
+server:
+  port: 9527
+
+spring:
+  application:
+    name: springcloud-gateway
+  cloud:
+    gateway:
+      discovery:
+        locator:
+          enabled: true
+      routes:
+        - id: payment_routh
+#          uri: http://localhost:8001
+        uri: lb://SPRING                                                                                  CLOUD-CONFIG-DEPT-8001 #此处如果有问题，请注意依赖spring-cloud-starter-netflix-eureka-client依赖不能错
+          predicates:
+            - Path=/dept/getb/**
+        - id: payment_routh2
+#          uri: http://localhost:8001
+          uri: lb://SPRINGCLOUD-CONFIG-DEPT-8001
+          predicates:
+            - Path=/dept/list
+#Eureka
+eureka:
+  instance:
+    hostname: springcloud-gateways
+  client:
+    register-with-eureka: true #是否向eureka注册中心注册自己
+    fetch-registry: true #如果为false则表示自己为注册中心
+    service-url: #与监控页面
+      defaultZone: http://eureka7002.com:7002/eureka/,http://eureka7003.com:7003/eureka/
