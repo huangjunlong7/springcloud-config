@@ -13,3 +13,5 @@ eureka:
 spring:
   application:
     name: springcloud-hystrix-payment8001
+config:
+  info: "master springcloud-config    /  config-test.yml  version=1" 
