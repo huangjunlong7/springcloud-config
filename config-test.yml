@@ -1,2 +1,15 @@
-config:
-  info:master branch config-test.yml
+server:
+  port: 8001
+
+#Eureka
+eureka:
+  instance:
+    hostname: eureka7001.com
+  client:
+    register-with-eureka: true #是否向eureka注册中心注册自己
+    fetch-registry: true #如果为false则表示自己为注册中心
+    service-url: #与监控页面
+      defaultZone: http://eureka7002.com:7002/eureka/,http://eureka7003.com:7003/eureka/
+spring:
+  application:
+    name: springcloud-hystrix-payment8001
